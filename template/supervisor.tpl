@@ -1,0 +1,21 @@
+[program:%(proj_name)s]
+command=%(envs_path)s/%(proj_name)s/bin/python %(proj_path)s/%(manage_py_path)s/manage.py run_gunicorn --bind=localhost:%(port)s
+numprocs=1
+numprocs_start=0
+priority=999
+autostart=true
+autorestart=true
+startsecs=5
+startretries=3
+exitcodes=0,2
+stopsignal=TERM
+stopwaitsecs=10
+killasgroup=false
+user=root
+redirect_stderr=false
+stdout_logfile=/var/log/supervisor/%(proj_name)s.out
+stdout_logfile_maxbytes=250MB
+stdout_logfile_backups=10
+stderr_logfile=/var/log/supervisor/%(proj_name)s.err
+stderr_logfile_maxbytes=250MB
+stderr_logfile_backups=10
